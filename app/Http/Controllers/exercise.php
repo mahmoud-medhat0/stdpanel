@@ -75,7 +75,7 @@ class exercise extends Controller
         $studentsid = DB::table('exercises')->selectRaw('exercises.std_id')->selectRaw('exercises.degree')->join('students','exercises.std_id','=','students.id')->selectRaw('students.name')->where('exercises.date', '=', $date)->get();        
         return view('exercise/edit',compact('studentsid'),compact('date'));
     }
-    public function examupdate(exerciseupdate $req )
+    public function exerciseupdate(exerciseupdate $req )
     {   
         $studentsid = DB::table('students')->select('id', 'name')->where('verified', '=', 1)->get();
         $count = $studentsid->count();
