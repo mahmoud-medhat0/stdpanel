@@ -23,7 +23,7 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
