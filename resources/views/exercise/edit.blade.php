@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                <form action="{{route('examupdate')}}" method="POST">
+                <form action="{{route('exerciseupdate')}}" method="POST">
                     @csrf
                     <center> <label for="start">date:</label>
                         <input type="date" id="start" disabled name="" value="{{ $date }}">

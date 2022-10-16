@@ -67,7 +67,7 @@ Route::controller(exercise::class)->group(function (){
     Route::post('exercise/edit', 'readexercise')->name('editexercise');
     Route::post('exercise/update', 'exerciseupdate')->name('exerciseupdate');
     Route::post('exercise/store','exercisestore')->name('exercisestore');
-    Route::delete('exercise/delete/{date}', 'exercisedelete')->name('deleteexm');
+    Route::delete('exercise/delete/{date}', 'exercisedelete')->name('deleteexercise');
 });
 
 Route::controller(student::class)->group(function () {

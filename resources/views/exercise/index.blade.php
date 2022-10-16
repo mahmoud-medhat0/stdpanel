@@ -43,7 +43,7 @@
                                         @enderror
                                         <button class="action_btn"><i class="far fa-edit"></i></button>
                                     </form>
-                                    <form action="{{ route('deleteexm', $date->date) }}" method="post">
+                                    <form action="{{ route('deleteexercise', $date->date) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="action_btn"><i class="fas fa-trash"></i></button>
