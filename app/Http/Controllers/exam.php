@@ -69,7 +69,7 @@ class exam extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with('success', 'Exam Record Has Been Added Successful');
+        return redirect()->back()->with('success', 'Exam Record ('.$req['date'].') Has Been Added Successful');
         //view('exam/add', compact('success'),compact('studentsid'))->with('success','Exam Record Has Been Added Successful');
     }
     public function examlist()
@@ -82,7 +82,7 @@ class exam extends Controller
     {
         $del = DB::table('exams')->select('*')->where('date','=',$date);
         $del->delete();
-        return redirect()->back()->with('success','The Exam Record Deleted Successfully');
+        return redirect()->back()->with('success','The Exam Record ('.$date.') Deleted Successfully');
     }
     public function readcexm(examedit $request)
     {   

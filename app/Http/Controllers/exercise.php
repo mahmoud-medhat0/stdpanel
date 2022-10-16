@@ -62,7 +62,7 @@ class exercise extends Controller
                 ]);
             }
         }
-        return redirect()->back()->with('success', 'Exercise Record Has Been Added Successful');
+        return redirect()->back()->with('success', 'Exercise Record('.$req['date'].') Has Been Added Successful');
     }
 
     public function exerciselist()
@@ -107,7 +107,7 @@ class exercise extends Controller
     {
         $del = DB::table('exercises')->select('*')->where('date','=',$date);
         $del->delete();
-        return redirect()->back()->with('success','The Exercise Record Deleted Successfully');
+        return redirect()->back()->with('success','The Exercise('.strval($date).') Record Deleted Successfully');
     }
 
 }
