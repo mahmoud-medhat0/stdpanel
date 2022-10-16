@@ -30,10 +30,12 @@ class exercise extends Controller
         $r1 = $req->input();
         $degrees = array();
         $id = array();
+        $loop = array();
         for ($i = 0; $i < count($r); $i++) {
             $a = explode("_", strval($r[$i]));
             if ($a[0] == "id") {
                 array_push($id, $r[$i]);
+                array_push($loop,$a[1]);
             }
             if ($a[0] == "degree") {
                 array_push($degrees, $r[$i]);
@@ -47,16 +49,16 @@ class exercise extends Controller
             $validate[$degree] = 'required';
         }
         $data1 = $req->validate($validate);
-        for ($i = 0; $i < $count; $i++) {
-            $ss=DB::table('exercises')->select('std_id', 'date')->where('date', '=', $req['date'])->where('std_id', '=', $req[$id[strval($i)]])->get();
+        foreach ($loop as $lp) {
+            $ss=DB::table('exercises')->select('std_id', 'date')->where('date', '=', $req['date'])->where('std_id', '=', $req['id_'.strval($lp)])->get();
                 if($ss->count()>0){
                     return redirect()->back()->with('success1', 'Exercise Already Recorded');
                 }
-            if (isset($req[$degrees[strval($i)]])) {
+            if (isset($req['degree_'.strval($lp)])) {
                 DB::table('exercises')->insert([
-                    'std_id' => $req[$id[strval($i)]],
+                    'std_id' => $req['id_'.strval($lp)],
                     'date' => $req['date'],
-                    'degree' => $req[$degrees[strval($i)]]
+                    'degree' => $req['degree_'.strval($lp)]
                 ]);
             }
         }
@@ -82,20 +84,22 @@ class exercise extends Controller
         $r = array_keys($req->except('_token'));
         $degrees = array();
         $id = array();
+        $loop = array();
         for ($i = 0; $i < count($r); $i++) {
             $a = explode("_", strval($r[$i]));
             if ($a[0] == "id") {
                 array_push($id, $r[$i]);
+                array_push($loop,$a[1]);
             }
             if ($a[0] == "degree") {
                 array_push($degrees, $r[$i]);
             }
         }
-        for ($i = 0; $i < $count; $i++) {
-            $idrecord = DB::table('exercises')->select('id')->where('std_id', '=', $req[$id[strval($i)]])->where('date','=', $req['date'])->get();
+        foreach ($loop as $lp) {
+            $idrecord = DB::table('exercises')->select('id')->where('std_id', '=', $req['id_'.strval($lp)])->where('date','=', $req['date'])->get();
             $idrecord=$idrecord['0']->id;
             $update = ModelsExercise::find($idrecord);
-            $update->update(['degree' => $req[$degrees[strval($i)]]]);
+            $update->update(['degree' => $req['degree_'.strval($lp)]]);
         }
         return redirect()->route('exerciselist')->with('success','The Exam Record ('.$req['date'].') updated Successfully')->withInput();
     }
