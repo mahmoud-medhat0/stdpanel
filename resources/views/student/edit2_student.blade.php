@@ -38,16 +38,6 @@
                     </div>
                     <div class="col-lg-6" bis_skin_checked="1">
                         <div class="common_input mb_15" bis_skin_checked="1">
-                            <input id="password" class="@error('password') is-invalid @enderror" name="password" type="text" placeholder="Password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-lg-6" bis_skin_checked="1">
-                        <div class="common_input mb_15" bis_skin_checked="1">
                             <input value="{{ $student->p_phone }}" type="number" name="p_phone"
                                 placeholder="parent phone">
                             @error('p_phone')
@@ -55,7 +45,17 @@
                             @enderror
                         </div>
                     </div>
-
+                    <div class="col-lg-6" bis_skin_checked="1">
+                        <div class="common_input mb_15" bis_skin_checked="1">
+                            <input id="password" class="@error('password') is-invalid @enderror" name="password"
+                                type="text" placeholder="Password">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-lg-6" bis_skin_checked="1">
                         <div class="common_input mb_15" bis_skin_checked="1">
                             <input id="password-confirm" name="password_confirmation" type="text"

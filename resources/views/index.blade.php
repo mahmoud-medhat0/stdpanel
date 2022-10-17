@@ -1,9 +1,8 @@
-@guest
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Admin Login</title>
+    <title>Admin</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -35,6 +34,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
+                @guest
                 <form class="login100-form validate-form" action="{{ route('login') }}" method="POST">
                     @csrf
                     <span class="login100-form-title p-b-26">
@@ -69,11 +69,11 @@
                         @enderror
                         <span class="focus-input100" data-placeholder="Password"></span>
                     </div>
-                    <div class="form-check">
+                    <div class="wrap-input100 validate-input">
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember')
                             ? 'checked' : '' }}>
 
-                        <label class="form-check-label" for="remember">
+                        <label class="wrap-input100 validate-input" for="remember">
                             {{ __('Remember Me') }}
                         </label>
                     </div>
@@ -86,6 +86,13 @@
                         </div>
                     </div>
                 </form>
+                @endguest
+                <a href="{{ route('home') }}" class="login100-form-btn">
+                    Home
+                </a>
+                <a href="{{ route('logout') }}" class="login100-form-btn">
+                    Logout
+                </a>
             </div>
         </div>
     </div>
