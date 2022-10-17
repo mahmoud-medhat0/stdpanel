@@ -77,6 +77,8 @@
                         </div>
                     </center>
                 </form>
+                <br>
+                <br>
                 <script>
                     function myFunction() {
                           var input, filter, table, tr, td, i, txtValue;
