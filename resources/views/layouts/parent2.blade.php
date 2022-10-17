@@ -50,8 +50,8 @@
         sidebar
     @endif">
         <div class="logo d-flex justify-content-between" bis_skin_checked="1">
-            <a class="large_logo" href="index-2.html"><img src="{{ asset('img/logo.png')}}" alt=""></a>
-            <a class="small_logo" href="index-2.html"><img src="{{ asset('img/mini_logo.png')}}" alt=""></a>
+            <a class="large_logo" href="{{ route('home') }}"><img src="{{ asset('img/logo.png')}}" alt=""></a>
+            <a class="small_logo" href="{{ route('home') }}"><img src="{{ asset('img/mini_logo.png')}}" alt=""></a>
             <div class="sidebar_close_icon d-lg-none" bis_skin_checked="1">
                 <i class="ti-close"></i>
             </div>
