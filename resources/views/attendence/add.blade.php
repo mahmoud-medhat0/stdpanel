@@ -71,10 +71,9 @@
                             <div class="col-lg-18" bis_skin_checked="1">
                                 <div class="" tabindex="0" bis_skin_checked="1">
                                     <select name="attend_{{ $student->id }}" id="attendence" class="form-control">
-                                        <option>take attend</option>
-                                        <option @selected( old('attend_'.$student->id)=='1') value="1" >✅ present
-                                        </option>
                                         <option @selected( old('attend_'.$student->id)=='0') value="0" >❌ absent
+                                        </option>
+                                        <option @selected( old('attend_'.$student->id)=='1') value="1" >✅ present
                                         </option>
                                     </select>
                                     @error('attend_'.$student->id)

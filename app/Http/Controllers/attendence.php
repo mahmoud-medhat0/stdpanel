@@ -70,14 +70,14 @@ class attendence extends Controller
         }foreach ($loop as $lp) {
             $validate1['attend_'.strval($lp)] = 'required|in:0,1';
         }
-        $req->validate($validate1);
-        $data1 = $req->validate($validate);
+        // $req->validate($validate1);
+        // $data1 = $req->validate($validate);
         $ss=DB::table('attendence')->select('date')->where('date', '=', $req['date'])->get();
         if($ss->count()>0){
             return redirect()->back()->with('success1', 'Attendence Already Recorded');
         }
         foreach ($loop as $lp) {
-            if (!isset($req['attend_'.strval($lp)]) || $req['attend_'.strval($lp)] == '0') {
+            if ($req['attend_'.strval($lp)] == '0') {
                 $validate1 = array();
                 $validate1['attend_'.strval($lp)] = 'required|in:0,1';
                 $req->validate($validate1);
@@ -88,6 +88,12 @@ class attendence extends Controller
                     'payed' => '*',
                     'reset' => '*'
                 ]);
+                DB::table('exercises')->insert([
+                    'std_id' => $req['id_'.strval($lp)],
+                    'date' => $req['date'],
+                    'degree' => '*'
+                ]);
+
             }
             if ($req['attend_'.strval($lp)] == '1'){
                 $validate1 = array();

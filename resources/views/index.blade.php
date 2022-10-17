@@ -115,6 +115,8 @@
 
 </html>
 @endguest
+@auth
+
 <head>
 
     <meta charset="utf-8">
@@ -190,3 +192,4 @@
     </div>
 
 </center>
+@endauth
