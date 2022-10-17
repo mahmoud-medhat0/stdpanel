@@ -34,6 +34,12 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
+                <a href="{{ route('home') }}" class="login100-form-btn">
+                    Home
+                </a>
+                <a href="{{ route('logout') }}" class="login100-form-btn">
+                    Logout
+                </a>
                 @guest
                 <form class="login100-form validate-form" action="{{ route('login') }}" method="POST">
                     @csrf
@@ -87,12 +93,7 @@
                     </div>
                 </form>
                 @endguest
-                <a href="{{ route('home') }}" class="login100-form-btn">
-                    Home
-                </a>
-                <a href="{{ route('logout') }}" class="login100-form-btn">
-                    Logout
-                </a>
+                
             </div>
         </div>
     </div>
