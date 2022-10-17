@@ -1,8 +1,9 @@
+@guest
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Admin</title>
+    <title>Admin login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -34,13 +35,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <a href="{{ route('home') }}" class="login100-form-btn">
-                    Home
-                </a>
-                <a href="{{ route('logout') }}" class="login100-form-btn">
-                    Logout
-                </a>
-                @guest
+
                 <form class="login100-form validate-form" action="{{ route('login') }}" method="POST">
                     @csrf
                     <span class="login100-form-title p-b-26">
@@ -92,8 +87,6 @@
                         </div>
                     </div>
                 </form>
-                @endguest
-                
             </div>
         </div>
     </div>
@@ -121,3 +114,30 @@
 </body>
 
 </html>
+@endguest
+@extends('layouts.parent2')
+
+@section('content')
+<center>
+    <div class="col-lg-6">
+        <div class="create_report_btn mt_30">
+            <a href="{{ route('attendlist') }}" class="btn_1 radius_btn d-block text-center">Attendance History</a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="create_report_btn mt_30">
+            <a href="{{ route('exerciselist') }}" class="btn_1 radius_btn d-block text-center">Exercise History</a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="create_report_btn mt_30">
+            <a href="{{ route('std') }}" class="btn_1 radius_btn d-block text-center">Students List</a>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="create_report_btn mt_30">
+            <a href="{{ route('lstexm') }}" class="btn_1 radius_btn d-block text-center">Exams List</a>
+        </div>
+    </div>
+</center>
+@endsection
