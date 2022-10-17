@@ -159,6 +159,12 @@
 <center>
     <div class="col-lg-6">
         <div class="create_report_btn mt_30">
+            <a href="{{ route('home') }}" class="btn_1 radius_btn d-block text-center">Home</a>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="create_report_btn mt_30">
             <a href="{{ route('attendlist') }}" class="btn_1 radius_btn d-block text-center">Attendance History</a>
         </div>
     </div>
@@ -177,4 +183,10 @@
             <a href="{{ route('lstexm') }}" class="btn_1 radius_btn d-block text-center">Exams List</a>
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="create_report_btn mt_30">
+            <a href="{{ route('logout') }}" class="btn_1 radius_btn d-block text-center">Logout</a>
+        </div>
+    </div>
+
 </center>
