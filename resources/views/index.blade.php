@@ -187,7 +187,10 @@
     </div>
     <div class="col-lg-6">
         <div class="create_report_btn mt_30">
-            <a href="{{ route('logout') }}" class="btn_1 radius_btn d-block text-center">Logout</a>
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button class="btn_1 radius_btn d-block text-center" type="submit">Logout</button>
+            </form>
         </div>
     </div>
 
