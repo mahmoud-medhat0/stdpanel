@@ -64,6 +64,19 @@
                     </div>
                     <div class="col-lg-6" bis_skin_checked="1">
                         <div class="" tabindex="0" bis_skin_checked="1">
+                            <select name="gender" id="dender" class="form-control">
+                                <option @selected($student->gender == 'm') value="m"> Male
+                                </option>
+                                <option @selected($student->gender == 'f') value="f"> Female
+                                </option>
+                            </select>
+                            @error('gender')
+                            <div class="text-danger font-weight-bold">*{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-6" bis_skin_checked="1">
+                        <div class="" tabindex="0" bis_skin_checked="1">
                             <select name="verified" id="verified" class="form-control">
                                 <option @selected($student->verified == 1) value="1"> Active
                                 </option>

@@ -28,7 +28,8 @@ class studentsupdateRequest extends FormRequest
             // 'email'=>['required','regex:/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/','max:255'],
             'phone'=>['required','regex:/^1[0-2,5]\d{8}$/'],
             'p_phone'=>['required','regex:/^1[0-2,5]\d{8}$/'],
-            'verified'=>['required','in:0,1']
+            'verified'=>['required','in:0,1'],
+            'gender' => ['required']
         ];
     }
 }

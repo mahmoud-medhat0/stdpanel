@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\studentstoreRequest;
 use App\Http\Requests\studentsupdateRequest;
+use Illuminate\Support\Facades\DB;
 
 class student extends Controller
 {
@@ -31,6 +32,7 @@ class student extends Controller
             'phone' => $request['phone'],
             'p_phone' => $request['p_phone'],
             'verified' => $request['verified'],
+            'gender' => $request['gender'],
             'password' => Hash::make($request['password'])
         ]);
         // return view('student.index',compact('request'));
@@ -41,14 +43,14 @@ class student extends Controller
         return view('student/edit2_student',compact('student'));
     }
     public function update (studentsupdateRequest $request,$id){
-        $data = $request->except('_token','method');
-        $student = students::find($id);
+        $student = DB::table('students')->where('id','=',$id);
         $student->update(
             [
                 'name' => $request['name'],
                 'phone' => $request['phone'],
                 'p_phone' => $request['p_phone'],
                 'verified' => $request['verified'],
+                'gender' => $request['gender']
             ]
         );
         if(isset($request['password'])){
