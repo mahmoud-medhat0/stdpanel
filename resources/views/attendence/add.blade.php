@@ -51,9 +51,6 @@
                         <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
                             colspan="1" style="width: 74px;" aria-label="User: activate to sort column ascending">
                             reset</th>
-                        <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                            colspan="1" style="width: 74px;" aria-label="User: activate to sort column ascending">
-                            exercise degree</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,15 +94,6 @@
                                 <input type="text" value="{{ old('reset_'.$student->id) }}"
                                     name="reset_{{ $student->id }}" placeholder="reset" id="">
                                 @error('reset_' . $student->id)
-                                <div class="text-danger font-weight-bold">*{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </td>
-                        <td>
-                            <div class="common_input mb_10" bis_skin_checked="1">
-                                <input type="text" value="{{ old('exercise_'.$student->id) }}"
-                                    name="exercise_{{ $student->id }}" placeholder="exercise degree" id="">
-                                @error('exercise_' . $student->id)
                                 <div class="text-danger font-weight-bold">*{{ $message }}</div>
                                 @enderror
                             </div>

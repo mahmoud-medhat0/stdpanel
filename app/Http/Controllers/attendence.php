@@ -48,9 +48,7 @@ class attendence extends Controller
             if ($a[0] == "reset") {
                 array_push($reset, $r[$i]);
             }
-            if ($a[0] == "exercise") {
-                array_push($exercise, $r[$i]);
-            }
+
         }
         $validate = array();
         foreach ($attend as $attendq) {
@@ -61,12 +59,7 @@ class attendence extends Controller
         }
         $validate1 = array();
         foreach ($loop as $lp) {
-            $validate1['reset_'.strval($lp)] = 'required|max:20';
-        }
-        foreach ($loop as $lp) {
             $validate1['payed_'.strval($lp)] = 'required|max:20';
-        }foreach ($loop as $lp) {
-            $validate1['exercise_'.strval($lp)] = 'required';
         }foreach ($loop as $lp) {
             $validate1['attend_'.strval($lp)] = 'required|in:0,1';
         }
@@ -77,6 +70,12 @@ class attendence extends Controller
             return redirect()->back()->with('success1', 'Attendence Already Recorded');
         }
         foreach ($loop as $lp) {
+            if (isset($req['reset_'.strval($lp)])){
+                $reset = $req['reset_'.strval($lp)];
+            }
+            if($req['reset_'.strval($lp)] == null){
+                $reset = '*';
+            }
             if ($req['attend_'.strval($lp)] == '0') {
                 $validate1 = array();
                 $validate1['attend_'.strval($lp)] = 'required|in:0,1';
@@ -86,20 +85,12 @@ class attendence extends Controller
                     'date' => $req['date'],
                     'attendence' => '0',
                     'payed' => '*',
-                    'reset' => '*'
+                    'reset' => $reset
                 ]);
-                DB::table('exercises')->insert([
-                    'std_id' => $req['id_'.strval($lp)],
-                    'date' => $req['date'],
-                    'degree' => '*'
-                ]);
-
             }
             if ($req['attend_'.strval($lp)] == '1'){
                 $validate1 = array();
                 $validate1['payed_'.strval($lp)] = 'required|integer';
-                $validate1['reset_'.strval($lp)] = 'required|integer';
-                $validate1['exercise_'.strval($lp)] = 'required';
                 $validate1['attend_'.strval($lp)] = 'required|in:0,1';
                 $req->validate($validate1);
                 DB::table('attendence')->insert([
@@ -107,14 +98,8 @@ class attendence extends Controller
                     'date' => $req['date'],
                     'attendence' => '1',
                     'payed' => $req['payed_'.strval($lp)],
-                    'reset' => $req['reset_'.strval($lp)]
+                    'reset' => $reset
                 ]);
-                DB::table('exercises')->insert([
-                    'std_id' => $req['id_'.strval($lp)],
-                    'date' => $req['date'],
-                    'degree' => $req['exercise_'.strval($lp)]
-                ]);
-         
             }
 
         }
@@ -162,9 +147,6 @@ class attendence extends Controller
             if ($a[0] == "payed") {
                 array_push($payed, $r[$i]);
             }
-            if ($a[0] == "reset") {
-                array_push($reset, $r[$i]);
-            }
         }
         $validate = array();
         foreach ($attend as $attendq) {
@@ -176,9 +158,6 @@ class attendence extends Controller
         $data1 = $req->validate($validate);
         $validate1 = array();
         foreach ($loop as $lp) {
-            $validate1['reset_'.strval($lp)] = 'required|max:20';
-        }
-        foreach ($loop as $lp) {
             $validate1['payed_'.strval($lp)] = 'required|max:20';
         }foreach ($loop as $lp) {
             $validate1['attend_'.strval($lp)] = 'required|in:0,1';
@@ -187,28 +166,33 @@ class attendence extends Controller
         foreach ($loop as $lp) {
             $idrecord = DB::table('attendence')->select('id')->where('std_id', '=', $req['id_'.strval($lp)])->where('date','=', $req['date'])->get();
             $idrecord=$idrecord['0']->id;
+            if (isset($req['reset_'.strval($lp)])){
+                $reset = $req['reset_'.strval($lp)];
+            }
+            if($req['reset_'.strval($lp)] == null){
+                $reset = '*';
+            }
             if (!isset($req['attend_'.strval($lp)]) || $req['attend_'.strval($lp)] == '0') {
                 $validate1 = array();
                 $validate1['attend_'.strval($lp)] = 'required|in:0,1';
                 $req->validate($validate1);
-                $update= attend::find($idrecord);
+                $update= DB::table('attendence')->where('id','=',$idrecord);
                 $update->update([
                     'attendence' => '0',
                     'payed' => '*',
-                    'reset' => '*'
+                    'reset' => $reset
                 ]);
             }
             if ($req['attend_'.strval($lp)] == '1'){
                 $validate1 = array();
                 $validate1['payed_'.strval($lp)] = 'required|integer';
-                $validate1['reset_'.strval($lp)] = 'required|integer';
                 $validate1['attend_'.strval($lp)] = 'required|in:0,1';
                 $req->validate($validate1);
-                $update= attend::find($idrecord);
+                $update= DB::table('attendence')->where('id','=',$idrecord);
                 $update->update([
                     'attendence' => '1',
                     'payed' => $req['payed_'.strval($lp)],
-                    'reset' => $req['reset_'.strval($lp)]
+                    'reset' => $reset
                 ]);         
             }
         }
